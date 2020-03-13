@@ -1,0 +1,190 @@
+#pragma once
+using namespace std;
+
+enum DOG_TYPE {
+	CORGI,
+	GERMAN_SHEPHERD,
+	HUSKY,
+	GOLDEN_RETRIEVER,
+	BORDER_COLLIE,
+	CHOW_CHOW
+};
+
+enum CAT_TYPE {
+	PERSIAN,
+	BRITISH_SHORTHAIR,
+	RAGDOLL,
+	RAGAMUFFIN,
+	SOMALI,
+	BEGNGAL_TIGER
+};
+
+class Pet {
+
+	protected:
+		string name;
+		string description;
+		double price;
+		int mood;
+		int energy;
+		int hunger;
+		int friendliness;
+		int popularity; //how many people have bought that specific type of cat
+
+	public:
+
+		//methods declaration
+		Pet() {
+
+			SetAll("", "", 0.f, 0, 0, 0, 0, 0);
+		}
+
+		Pet(string nName, string dDescription, double pPrice, int mMood, int eEnergy, int hHunger, int fFriendliness, int pPopularity) {
+
+			SetAll(nName, dDescription, pPrice, mMood, eEnergy, hHunger, fFriendliness, pPopularity);
+		}
+
+		~Pet() {
+
+		}
+
+		//Get Methods
+		string GetName() {
+			return name;
+		}		
+		
+		string GetDescription() {
+			return description;
+		}		
+		
+		double GetPrice() {
+			return price;
+		}
+
+		int GetMood() {
+			return mood;
+		}
+
+		int GetEnergy() {
+			return energy;
+		}
+
+		int GetHunger() {
+			return hunger;
+		}
+
+		int GetFriendliness() {
+			return friendliness;
+		}
+
+		int GetPopularity() {
+			return popularity;
+		}
+
+		//Set Methods
+		void SetAll(string nName, string dDescription, double pPrice, int mMood, int eEnergy, int hHunger, int fFriendliness, int pPopularity) {
+			SetName(nName);
+			SetDescription(dDescription);
+		}
+
+		void SetName(string nName) {
+			name = nName;
+		}
+
+		void SetDescription(string dDescription) {
+			description = dDescription;
+		}
+
+		void SetPrice(double pPrice) {
+			price = pPrice;
+		}
+
+		void SetMood(int mMood) {
+			mood = mMood;
+		}
+
+		void SetEnergy(int eEnergy) {
+			energy = eEnergy;
+		}
+
+		void SetHunger(int hHunger) {
+			hunger = hHunger;
+		}
+
+		void SetFriendliness(int fFriendliness) {
+			friendliness = fFriendliness;
+		}
+
+		void SetPopularity(int pPopularity) {
+			popularity = pPopularity;
+		}
+
+		
+		/*we change from YES to NO and vice-versa
+		void ChangeOwnedStatus() {
+			owned = !owned;
+		}
+		*/
+};
+
+class Dog : public Pet
+{
+	protected:
+		DOG_TYPE dogType;
+
+		Dog() : Pet() {
+			SetDogType(CORGI);	//DEFAULT VALUE
+		}
+
+		//sto dichiarando un costruttore che riceve in input tutti parametri del padre perché li sta ereditando e gli sevono
+		Dog(string nName, string dDescription, double pPrice, int mMood, int eEnergy, int hHunger, int fFriendliness, int pPopularity, DOG_TYPE dogT) : Pet(nName, dDescription, pPrice, mMood, eEnergy, hHunger, fFriendliness, pPopularity) {
+			SetDogType(dogT);
+		}
+
+		~Dog() {
+
+		}
+
+		//Get Methods
+		DOG_TYPE GetDogType() {
+			return dogType;
+		}
+
+		//Set Methods
+		void SetDogType(DOG_TYPE dogT) {
+			dogType = dogT;
+		}
+
+};
+
+class Cat : public Pet
+{
+	protected:
+		CAT_TYPE catType;
+	
+	public:
+
+		Cat() : Pet() {
+			SetCatType(PERSIAN);	//DEFAULT VALUE
+		}
+
+		//sto dichiarando un costruttore che riceve in input tutti parametri del padre perché li sta ereditando e gli sevono
+		Cat(string nName, string dDescription, double pPrice, int mMood, int eEnergy, int hHunger, int fFriendliness, int pPopularity, CAT_TYPE catT) : Pet(nName, dDescription, pPrice, mMood, eEnergy, hHunger, fFriendliness, pPopularity) {
+			SetCatType(catT);
+		}
+
+		~Cat() {
+
+		}
+
+		//Get Methods
+		CAT_TYPE GetCatType() {
+			return catType;
+		}
+
+		//Set Methods
+		void SetCatType(CAT_TYPE catT) {
+			catType = catT;
+		}
+
+};
